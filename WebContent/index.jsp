@@ -25,6 +25,9 @@
    				     <br/>
    				  <button type="submit" class="btn btn-primary">Check</button>
    				  <button type="reset" class="btn btn-danger">Clear</button>
+   				  	 <a href="register.jsp"> 
+   				  	        <button type="button" class="btn btn-success">Register</button>
+   				  	 </a>
    				  </form>
   </div>
      

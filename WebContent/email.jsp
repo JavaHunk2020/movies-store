@@ -22,8 +22,10 @@
                      StringBuilder stringBuilder=new StringBuilder(tkp); 
                      String ulta=stringBuilder.reverse().toString();
                      String result="";
+                     int flag=0;
                      if("nagendra@gmail.com".equalsIgnoreCase(tkp) && "test".equals(password)) {
                     	 result="Congrates you are a valid user!!!!!!!!!!!!";
+                    	 flag=1;
                      }else{
                     	 result="Sorry your username and password are not valid!!!!!!!!!!!!";
                      }
@@ -33,7 +35,11 @@
          <h4>Your final result is       =       <%= ulta %>        </h4>
           <hr/>
           <h4><%= result%></h4>
-                   <img src="img/congrates.png"  style="height: 239px">
+                    <%
+                     if(flag==1)  { %>      
+                          <img src="img/congrates.png"  style="height: 239px">
+                    <% } %>
+   
     </div>
    
   
