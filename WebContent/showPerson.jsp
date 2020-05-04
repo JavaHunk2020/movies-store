@@ -16,13 +16,22 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
    <header  style="height: 30px;background-color: #21c9ff;">
+     <b style="margin-left: 50px;">Hello! Mr. Jack</b>
    </header>
-    <div  class="container">
-         <img src="img/student.png"  style="height: 200px">
+   <div class="container">
+      <img src="img/student.png"  style="height: 139px">
+          <a href="showPerson.jsp"> 
+         <button type="button" class="btn btn-primary">Manage Users</button>
+         </a>
+   				  <button type="reset" class="btn btn-danger">Email</button>
+   				  	 <a href="profile.jsp"> 
+   				  	        <button type="button" class="btn btn-success">Profile</button>
+   				  	 </a>
+   				  	  <a href="logout.jsp"> 
+   				  	        <button type="button" class="btn btn-warning">Logout</button>
+   				  	 </a>
          <hr/>
-<p>The .table-bordered class adds borders on all sides of the table and the cells:</p>            
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -30,6 +39,8 @@
         <th>Salary</th>
         <th>Mobile</th>
         <th>Email</th>
+        <th>Action</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -44,11 +55,19 @@
         <td><%= entity.getSalary()%></td>
         <td><%= entity.getMobile()%></td>
           <td><%= entity.getEmail()%></td>
+          <td>
+             <a href="deletePerson?email=<%=entity.getEmail()%>">
+             <img src="img/delete.png"  style="height: 40px">
+             </a>
+          </td>
          </tr>
      <% } %>
       
     </tbody>
   </table>
   </div>
+  <footer style="background-color: maroon;height: 20px;">
+  
+  </footer>
 </body>
 </html>

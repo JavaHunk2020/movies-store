@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.kuebiko.dao.entity.PersonEntity;
 import com.kuebiko.utils.SQLConnectionUtil;
@@ -148,6 +149,26 @@ public class PersonDaoImpl implements PersonDao {
 		}
 		return personEntity;
 	}
+	
+	@Override
+	public Optional<PersonEntity> findLoginUser(String email,String password) {
+		PersonEntity personEntity = null;
+		try (Connection conn = SQLConnectionUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.CHECK_LOGIN_USER)) {
+			pstmt.setString(1,email);
+			pstmt.setString(2,password);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				personEntity = new PersonEntity(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getDate(5), rs.getLong(6), rs.getDouble(7), rs.getInt(8), rs.getTimestamp(9),
+						rs.getTimestamp(10));
+				personEntity.setPassword(rs.getString(11));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Optional.ofNullable(personEntity);
+	}
 
 	@Override
 	public List<PersonEntity> findAll() {
@@ -175,6 +196,19 @@ public class PersonDaoImpl implements PersonDao {
 		try (Connection conn = SQLConnectionUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.DELETE_PERSON_BY_ID)) {
 			pstmt.setInt(1, pid);
+			rowcount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowcount;
+	}
+	
+	@Override
+	public int deleteByEmailId(String email) {
+		int rowcount = 0;
+		try (Connection conn = SQLConnectionUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.DELETE_PERSON_BY_EMAIL)) {
+			pstmt.setString(1, email);
 			rowcount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
