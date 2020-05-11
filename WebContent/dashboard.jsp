@@ -11,19 +11,19 @@
 </head>
 <body>
    <header  style="height: 30px;background-color: #21c9ff;">
-   <b style="margin-left: 50px;">Hello! Mr. Jack</b>
+   <b style="margin-left: 50px;">Hello!  ${sessionScope.userData.name}</b>
    </header>
     <div  class="container">
          <img src="img/student.png"  style="height: 139px">
          
-          <a href="showPerson.jsp"> 
+          <a href="persons"> 
          <button type="button" class="btn btn-primary">Manage Users</button>
          </a>
    				  <button type="reset" class="btn btn-danger">Email</button>
    				  	 <a href="profile.jsp"> 
    				  	        <button type="button" class="btn btn-success">Profile</button>
    				  	 </a>
-   				  	  <a href="logout.jsp"> 
+   				  	  <a href="logout"> 
    				  	        <button type="button" class="btn btn-warning">Logout</button>
    				  	 </a>
          <hr/>

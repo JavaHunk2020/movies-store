@@ -1,8 +1,7 @@
 package com.kuebiko.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,20 +13,15 @@ import com.kuebiko.dao.PersonDao;
 import com.kuebiko.dao.PersonDaoImpl;
 import com.kuebiko.dao.entity.PersonEntity;
 
-//<a href="deletePerson?email=<%=entity.getEmail()%>">
-@WebServlet("/deletePerson")
-public class DeletePersonServlet extends HttpServlet{
+
+@WebServlet("/persons")
+public class PersonsServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String email=req.getParameter("email");
-		  PersonDao personDao=new PersonDaoImpl();
-		  personDao.deleteByEmailId(email);
-		 
-		  req.setAttribute("msg", "Nagendra");
-		  req.setAttribute("list", new ArrayList<>());
-		  
-		   req.getRequestDispatcher("showPerson.jsp").forward(req, resp);
+		    PersonDao personDao=new PersonDaoImpl();
+		    List<PersonEntity>  personList= personDao.findAll();
+		  req.setAttribute("personList", personList);
+		  req.getRequestDispatcher("showPerson.jsp").forward(req, resp);
 	}
 }

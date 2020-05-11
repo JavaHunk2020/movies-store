@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kuebiko.dao.PersonDao;
 import com.kuebiko.dao.PersonDaoImpl;
@@ -31,7 +32,9 @@ public class LoginServlet extends HttpServlet {
 		  PersonDao personDao=new PersonDaoImpl();
 		  Optional<PersonEntity> optional = personDao.findLoginUser(temail, password);
 		  if(optional.isPresent()) {
-			     req.setAttribute("userData", optional.get());
+			     HttpSession session=req.getSession();
+			     session.setAttribute("userData", optional.get());
+			     //req.setAttribute("userData", optional.get());
 			     req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
 		  }else {
 			  req.setAttribute("message", "Sorry username and password are not valid!");

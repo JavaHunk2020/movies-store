@@ -30,6 +30,10 @@
    				  	 <a href="register.jsp"> 
    				  	        <button type="button" class="btn btn-success">Register</button>
    				  	 </a>
+   				  	 
+   				  	  	 <a href="register.jsp"> 
+   				  	        <button type="button" class="btn btn-primary">Forgot Password</button>
+   				  	 </a>
    				  </form>
   </div>
      

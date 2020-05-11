@@ -15,7 +15,17 @@ public class PersonEntity {
 	private int ssn;
 	private Timestamp createdate;
 	private Timestamp updatedate;
+	private String role;
 	
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public PersonEntity() {}
 	
 	public PersonEntity(int pid, String userid, String name, String email, Date dob, long mobile, double salary,

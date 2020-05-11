@@ -123,6 +123,7 @@ public class PersonDaoImpl implements PersonDao {
 						rs.getDate(5), rs.getLong(6), rs.getDouble(7), rs.getInt(8), rs.getTimestamp(9),
 						rs.getTimestamp(10));
 				personEntity.setPassword(rs.getString(11));
+				personEntity.setRole(rs.getString(12));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,6 +143,7 @@ public class PersonDaoImpl implements PersonDao {
 						rs.getDate(5), rs.getLong(6), rs.getDouble(7), rs.getInt(8), rs.getTimestamp(9),
 						rs.getTimestamp(10));
 				personEntity.setPassword(rs.getString(11));
+				personEntity.setRole(rs.getString(12));
 			}
 
 		} catch (Exception e) {
@@ -163,6 +165,7 @@ public class PersonDaoImpl implements PersonDao {
 						rs.getDate(5), rs.getLong(6), rs.getDouble(7), rs.getInt(8), rs.getTimestamp(9),
 						rs.getTimestamp(10));
 				personEntity.setPassword(rs.getString(11));
+				personEntity.setRole(rs.getString(12));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -182,6 +185,7 @@ public class PersonDaoImpl implements PersonDao {
 						rs.getString(4), rs.getDate(5), rs.getLong(6), rs.getDouble(7), rs.getInt(8),
 						rs.getTimestamp(9), rs.getTimestamp(10));
 				personEntity.setPassword(rs.getString(11));
+				personEntity.setRole(rs.getString(12));
 				personEntities.add(personEntity);
 			}
 		} catch (Exception e) {
