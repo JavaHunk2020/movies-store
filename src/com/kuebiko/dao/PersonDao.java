@@ -14,4 +14,5 @@ public interface PersonDao {
 	PersonEntity findByUserid(String userid);
 	Optional<PersonEntity> findLoginUser(String email, String password);
 	int deleteByEmailId(String email);
+	String updateByPid(PersonEntity entity);
 }

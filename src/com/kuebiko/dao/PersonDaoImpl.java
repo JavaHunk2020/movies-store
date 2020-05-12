@@ -14,6 +14,78 @@ import com.kuebiko.utils.SQLConnectionUtil;
 import com.kuebiko.utils.SQLQuery;
 
 public class PersonDaoImpl implements PersonDao {
+	
+	
+	@Override
+	public String updateByPid(PersonEntity entity) {
+		int rowcount = 0;
+		// Try with resource - Java7 features
+		try (Connection conn = SQLConnectionUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.UPDATE_PERSON_PID);) {
+
+			PersonEntity dbpersonEntity = findByUserid(entity.getUserid());
+			
+			boolean status=false;
+			
+			if (entity.getUserid() != null) {
+				dbpersonEntity.setUserid(entity.getUserid());
+			}else {
+				return "user id not present!";
+			}
+
+			if (entity.getDob() != null) {
+				dbpersonEntity.setDob(entity.getDob());
+				 status=true;
+			}
+			if (entity.getEmail() != null) {
+				dbpersonEntity.setEmail(entity.getEmail());
+				status=true;
+			}
+			if (entity.getMobile() != 0) {
+				dbpersonEntity.setMobile(entity.getMobile());
+				status=true;
+			}
+			if (entity.getName() != null) {
+				dbpersonEntity.setName(entity.getName());
+				status=true;
+			}
+
+			if (entity.getSalary() != 0) {
+				dbpersonEntity.setSalary(entity.getSalary());
+				status=true;
+			}
+			
+			if (entity.getSsn() != 0) {
+				dbpersonEntity.setSsn(entity.getSsn());
+				status=true;
+			}
+			
+			if (entity.getUpdatedate() != null) {
+				status=true;
+				dbpersonEntity.setUpdatedate(entity.getUpdatedate());
+			}
+
+			
+			//	// String UPDATE_PERSON="update persons_tbl set name = ?, email =? , dob = ? ,
+			// mobile = ? , salary =? , ssn =? , updatedate =? where userid = ?";
+			System.out.println(dbpersonEntity);
+			if(status) {
+					pstmt.setString(1, dbpersonEntity.getName());
+					pstmt.setString(2, dbpersonEntity.getEmail());
+					pstmt.setDate(3, new java.sql.Date(entity.getDob().getTime()));
+					pstmt.setLong(4, dbpersonEntity.getMobile());
+					pstmt.setDouble(5, dbpersonEntity.getSalary());
+					pstmt.setInt(6, dbpersonEntity.getSsn());
+					pstmt.setTimestamp(7, new Timestamp(new Date().getTime()));
+					pstmt.setString(8, dbpersonEntity.getUserid());
+					pstmt.setInt(9, dbpersonEntity.getPid());
+					rowcount = pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowcount > 0 ? "success" : "no rows updated";
+	}
 
 	// String UPDATE_PERSON="update persons_tbl set name = ?, email =? , dob = ? ,
 	// mobile = ? , salary =? , ssn =? , updatedate =? where userid = ?";
@@ -110,6 +182,8 @@ public class PersonDaoImpl implements PersonDao {
 		}
 		return rowcount > 0 ? "success" : "no rows updated";
 	}
+	
+
 
 	@Override
 	public PersonEntity findByUserid(String userid) {

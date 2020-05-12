@@ -22,7 +22,7 @@
 <body>
    <header  style="height: 30px;background-color: #21c9ff;">
      <b style="margin-left: 50px;">Hello! Mr. Jack
-       ${msg}
+     
      </b>
    </header>
    <div class="container">
@@ -37,6 +37,8 @@
    				  	  <a href="logout"> 
    				  	        <button type="button" class="btn btn-warning">Logout</button>
    				  	 </a>
+   				  	 <br/>
+   				  <span style="font-size: 20px;">${message}</span>  	 
          <hr/>
   <table class="table table-bordered">
     <thead>
@@ -63,7 +65,7 @@
              <img src="img/delete.png"  style="height: 40px">
              </a>
              
-             <a href="editPerson?email=${entity.email}">
+             <a href="editPerson?pid=${entity.pid}">
              <img src="img/edit.png"  style="height: 40px">
              </a>
              </c:if>
