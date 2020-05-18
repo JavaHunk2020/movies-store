@@ -11,6 +11,9 @@
 </head>
 <body>
    <header  style="height: 30px;background-color: #21c9ff;">
+     <b style="margin-left: 20px;">${applicationScope.email}</b>
+     
+      <b style="margin-left: 20px;">Mobile : = ${applicationScope.mobile}</b>
    </header>
     <div  class="container">
          <img src="img/student.png"  style="height: 239px">

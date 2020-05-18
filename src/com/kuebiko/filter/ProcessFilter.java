@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 //Please intercept all the incoming request
-@WebFilter("/*")
+@WebFilter(filterName="processFilter")
 public class ProcessFilter implements Filter {
 	
 	Set<String> allowedResources=new HashSet<>();
@@ -28,6 +28,8 @@ public class ProcessFilter implements Filter {
 		allowedResources.add("/auth");
 		allowedResources.add("/register.jsp");
 		allowedResources.add("/process.jsp");
+		allowedResources.add("/unavaliable.jsp");
+		
 	}
 	
 	@Override
@@ -35,8 +37,8 @@ public class ProcessFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest  httpServletRequest=(HttpServletRequest)request;
 		String resourceName=httpServletRequest.getServletPath();
-		System.out.println("Hello Mr . "+resourceName+" , you are most welcome at "+LocalDateTime.now());
-		if(allowedResources.contains(resourceName) || allowedResources.contains("images")) {		
+		System.out.println("ProcessFilter Hello Mr . "+resourceName+" , you are most welcome at "+LocalDateTime.now());
+		if(allowedResources.contains(resourceName) || resourceName.contains("img/") || resourceName.contains("css/")) {		
 			chain.doFilter(request, response);
 		}else {
 			HttpSession session=httpServletRequest.getSession(false);
