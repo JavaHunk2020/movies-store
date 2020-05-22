@@ -26,9 +26,15 @@ public class ProcessFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		allowedResources.add("/index.jsp");
 		allowedResources.add("/auth");
+		allowedResources.add("/image");
+		allowedResources.add("/photos");
+		
+		allowedResources.add("/upload.jsp");
 		allowedResources.add("/register.jsp");
 		allowedResources.add("/process.jsp");
 		allowedResources.add("/unavaliable.jsp");
+		allowedResources.add("/uploadPhoto");
+		
 		
 	}
 	
